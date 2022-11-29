@@ -1,4 +1,4 @@
-package lock;
+package com.kk.lock;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;

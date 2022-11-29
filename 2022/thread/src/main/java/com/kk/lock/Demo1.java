@@ -1,8 +1,8 @@
-package lock;
+package com.kk.lock;
 
 
-import com.kk.threadstudy.lock.support.BasicClass;
-import com.kk.threadstudy.lock.support.SubClass;
+import com.kk.lock.support.BasicClass;
+import com.kk.lock.support.SubClass;
 
 /**
  * 这个demo 需要验证以下问题

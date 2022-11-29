@@ -1,4 +1,6 @@
-package containter.map;
+package com.kk.containter.map;
+
+import com.kk.containter.map.Product;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

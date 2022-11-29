@@ -1,4 +1,4 @@
-package lock.homework;
+package com.kk.lock.homework;
 
 /**
  * 2个线程

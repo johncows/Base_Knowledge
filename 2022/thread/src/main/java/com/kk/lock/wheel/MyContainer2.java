@@ -1,10 +1,13 @@
-package lock.wheel;
+package com.kk.lock.wheel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class MyContainer1<T> {
+public class MyContainer2<T> {
 
 
     List<T> coreContainer = new ArrayList<T>();
@@ -13,42 +16,56 @@ public class MyContainer1<T> {
 
     private Integer maxSize = 10;
 
-    private Object lock = new Object();
+    private Lock lock = new ReentrantLock();
+
+    private Condition producer = lock.newCondition();
+    private Condition consumer = lock.newCondition();
+
 
     // 消费者
-    public synchronized T get() throws InterruptedException {
-        while (true) {
-            if (count == 0) {
-                System.out.println("达到最小值,消费者停止消费");
-                this.wait();
-            } else {
-                break;
+    public T get() throws InterruptedException {
+        try {
+            lock.lock();
+            while (true) {
+                if (count == 0) {
+                    System.out.println("达到最小值,消费者停止消费");
+                    consumer.await();
+                } else {
+                    break;
+                }
             }
+            T result = coreContainer.remove(0);
+            count--;
+            producer.signalAll();
+            return result;
+        } finally {
+            lock.unlock();
         }
-        T result = coreContainer.remove(0);
-        count--;
-        this.notifyAll(); // 唤醒生产者
-        return result;
     }
 
     // 生产者
-    public synchronized void put(T t) throws InterruptedException {
-        while (true) {
-            if (count == maxSize) {
-                System.out.println(Thread.currentThread().getName() + "达到最大值,生产者停止生产");
-                this.wait();
-            } else {
-                break;
+    public void put(T t) throws InterruptedException {
+        try {
+            lock.lock();
+            while (true) {
+                if (count == maxSize) {
+                    System.out.println(Thread.currentThread().getName() + "达到最大值,生产者停止生产");
+                    producer.await();
+                } else {
+                    break;
+                }
             }
+            coreContainer.add(t);
+            System.out.println(Thread.currentThread().getName() + "生产数据: " + t);
+            count++;
+            consumer.signalAll(); // 唤醒消费者
+        } finally {
+            lock.unlock();
         }
-        coreContainer.add(t);
-        System.out.println(Thread.currentThread().getName() + "生产数据: " + t);
-        count++;
-        this.notifyAll(); // 唤醒消费者
     }
 
     public static void main(String[] args) throws InterruptedException {
-        MyContainer1<String> container = new MyContainer1<>();
+        MyContainer2<String> container = new MyContainer2<>();
         CountDownLatch countDownLatch = new CountDownLatch(1);
 
         for (int i = 0; i < 10; i++) {

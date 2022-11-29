@@ -1,4 +1,4 @@
-package lock.homework;
+package com.kk.lock.homework;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

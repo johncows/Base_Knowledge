@@ -1,13 +1,13 @@
-package lock.homework;
+package com.kk.lock.homework;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotifyContainer2 {
+public class NotifyContainer3 {
     private Object lock = new Object();
     private List<Integer> content;
 
-    public NotifyContainer2() {
+    public NotifyContainer3() {
         content = new ArrayList();
     }
 
@@ -36,7 +36,7 @@ public class NotifyContainer2 {
 
 
     public static void main(String[] args) throws InterruptedException {
-        NotifyContainer2 notifyContainer = new NotifyContainer2();
+        NotifyContainer3 notifyContainer = new NotifyContainer3();
         new Thread(() -> {
             try {
                 notifyContainer.watch();

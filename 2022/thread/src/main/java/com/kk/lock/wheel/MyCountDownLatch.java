@@ -1,4 +1,4 @@
-package lock.wheel;
+package com.kk.lock.wheel;
 
 /**
  * await 阻塞自己当前线程
