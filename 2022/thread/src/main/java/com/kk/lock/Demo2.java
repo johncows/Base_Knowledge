@@ -54,6 +54,7 @@ public class Demo2 {
                 e.printStackTrace();
             }
         }
+
     }
 
     void fun3() {

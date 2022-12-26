@@ -18,12 +18,18 @@ public class PrintDemo03 {
     Condition condition123 = reentrantLock.newCondition();
     Condition conditionABC = reentrantLock.newCondition();
 
+    public static void main(String[] args) throws InterruptedException {
+        PrintDemo03 printDemo = new PrintDemo03();
+        new Thread(printDemo::print123, "thread01").start();
+        Thread.sleep(2_000);
+        new Thread(printDemo::printABC, "thread02").start();
+    }
+
     void print123() {
         reentrantLock.lock();
         for (int i = 0; i < 26; i++) {
             System.out.print(i + 1);
             try {
-                conditionABC.signalAll();
                 if (i == 25) {
                     break;
                 }
@@ -52,13 +58,6 @@ public class PrintDemo03 {
 
         }
         reentrantLock.unlock();
-    }
-
-
-    public static void main(String[] args) throws InterruptedException {
-        PrintDemo03 printDemo = new PrintDemo03();
-        new Thread(printDemo::print123).start();
-        new Thread(printDemo::printABC).start();
     }
 
 }

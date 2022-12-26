@@ -3,7 +3,7 @@ package com.kk.cheapter10;
 import java.util.concurrent.CountDownLatch;
 
 public class ThreadLocalSimpleTest {
-    private  static ThreadLocal<String> threadLocal = new ThreadLocal(){
+    private static ThreadLocal<String> threadLocal = new ThreadLocal() {
         // 重写initvalue
         @Override
         protected String initialValue() {
