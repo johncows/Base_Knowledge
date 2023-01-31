@@ -1,8 +1,8 @@
-package com.kk.lock;
+package com.kk.containter.lock;
 
 
-import com.kk.lock.support.BasicClass;
-import com.kk.lock.support.SubClass;
+import com.kk.containter.lock.support.BasicClass;
+import com.kk.containter.lock.support.SubClass;
 
 /**
  * 这个demo 需要验证以下问题

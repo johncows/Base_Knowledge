@@ -1,4 +1,4 @@
-package com.kk.lock;
+package com.kk.containter.lock;
 
 /**
  * @author wangjunkang

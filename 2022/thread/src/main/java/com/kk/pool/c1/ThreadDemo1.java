@@ -1,11 +1,11 @@
-package com.kk.pool;
+package com.kk.pool.c1;
 
 import java.util.concurrent.*;
 
 /**
  * @author wangjunkang
  */
-public class Demo1 {
+public class ThreadDemo1 {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = new ThreadPoolExecutor(2, 10,
                 0L, TimeUnit.MILLISECONDS,

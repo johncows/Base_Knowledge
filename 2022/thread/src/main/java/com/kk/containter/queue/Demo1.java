@@ -10,7 +10,6 @@ public class Demo1 {
 
     public static void main(String[] args) throws InterruptedException {
         ArrayBlockingQueue queue = new ArrayBlockingQueue<String>(10);
-
         Random random = new Random();
 
         for (int i = 0; i < 10; i++) {

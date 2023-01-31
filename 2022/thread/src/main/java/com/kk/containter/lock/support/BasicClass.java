@@ -1,6 +1,6 @@
-package com.kk.lock.support;
+package com.kk.containter.lock.support;
 
-public class SubClass extends BasicClass {
+public class BasicClass {
 
     public static synchronized void doSth() {
         System.out.print(Thread.currentThread().getName());

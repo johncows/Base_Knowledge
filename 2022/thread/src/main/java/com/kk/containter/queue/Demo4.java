@@ -12,7 +12,8 @@ public class Demo4 {
 
         new Thread(() -> {
             try {
-                queue.transfer("123");
+                queue.transfer("1");
+                System.out.println("处理完成1");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -20,7 +21,8 @@ public class Demo4 {
 
         new Thread(() -> {
             try {
-                queue.transfer("123");
+                queue.transfer("2");
+                System.out.println("处理完成2");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -29,14 +31,15 @@ public class Demo4 {
 
         new Thread(() -> {
             try {
-                queue.transfer("123");
+                queue.transfer("3");
+                System.out.println("处理完成3");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }, "thread03").start();
 
-        while (true) {
-            System.out.println(queue.take());
-        }
+        System.out.println(queue.take());
+
+   
     }
 }
