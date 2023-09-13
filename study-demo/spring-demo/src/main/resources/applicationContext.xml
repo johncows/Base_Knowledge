@@ -8,7 +8,7 @@
 						http://www.springframework.org/schema/util/spring-util-4.0.xsd"
 >
 
-    <bean id="student" class="com.kk.compoment.Student" >
+    <bean id="student" class="com.kk.compoment.Student" init-method="init" >
         <property name="id" value="1"/>
         <property name="name" value="王骏康"/>
     </bean>
